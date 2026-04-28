@@ -3,7 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const PART1_END = 9;
 
-// --- CSS OPTIMIZADO PARA UX MÓVIL Y ACCESIBILIDAD ---
+// ======================================================================
+// 1. CSS COMPLETO Y OPTIMIZADO PARA MÓVILES (INTOCABLE)
+// ======================================================================
 const G = `
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap');
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -168,7 +170,7 @@ const G = `
   .congruence-alert {background:rgba(212,130,110,.08); border:1px solid rgba(212,130,110,.3); border-left:3px solid var(--closer); border-radius:0 8px 8px 0; padding:16px 20px; margin:1.5rem 0; font-size:.95rem; color:rgba(255,255,255,.8); font-weight:300; line-height:1.6;}
   .congruence-alert strong {color: var(--closer);}
   
-  .disclaimer {font-size: .8rem; color: rgba(255,255,255,.35); line-height: 1.5; font-style: italic; border-left: 2px solid rgba(255,255,255,.1); padding-left: 12px; margin-bottom: 2rem;}
+  .disclaimer {font-size: .8rem; color: rgba(255,255,255,.45); line-height: 1.5; font-style: italic; border-left: 2px solid rgba(255,255,255,.1); padding-left: 12px; margin-bottom: 2rem;}
 
   .dims-title{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;font-weight:500}
   .dim-row{margin-bottom:14px}
@@ -202,7 +204,9 @@ const G = `
   .dev-txt{font-size:.95rem;color:rgba(255,255,255,.75);font-weight:300;line-height:1.7}
 `;
 
-// --- DATOS ESTÁTICOS (Con la Opción D añadida) ---
+// ======================================================================
+// 2. DATOS ESTÁTICOS Y DICCIONARIOS (COMPLETOS)
+// ======================================================================
 const DIMS = [
   {id:"comm",   label:"Comunicación",          setter:"Escucha activa",      closer:"Directo y asertivo"},
   {id:"orient", label:"Orientación",           setter:"Relaciones",          closer:"Resultados"},
@@ -352,6 +356,21 @@ const TOPICS=[
   {id:"vision",label:"Hacia dónde querés ir",icon:"🎯",w:{s:1.5,c:0}},
 ];
 
+const ROLE_DICTIONARY = {
+  setter: {
+    title: "El Setter (Apertura y Confianza)",
+    desc: "Es quien inicia la relación. Su talento no es 'vender', sino detectar si hay un problema que vale la pena resolver. Es ideal si preferís construir un puente de confianza antes de proponer una solución."
+  },
+  closer: {
+    title: "El Closer (Resolución y Decisión)",
+    desc: "Es quien ayuda a dar el paso final. Su talento es la claridad y la firmeza. Es ideal si sos directo/a y sentís satisfacción al ayudar a otros a tomar decisiones que han estado postergando."
+  },
+  appointment: {
+    title: "Prospector Digital (Estrategia y Chat)",
+    desc: "Es el arquitecto del flujo. Su talento está en el análisis escrito. Es ideal si preferís trabajar por objetivos claros, sos muy organizado/a y te sentís más cómodo/a por chat que en llamada."
+  }
+};
+
 const NICHES=[
   {id:"wellness",label:"Bienestar & Salud",icon:"🌿"},
   {id:"finance",label:"Finanzas personales",icon:"📈"},
@@ -360,76 +379,55 @@ const NICHES=[
 ];
 
 const ALEX={
-  wellness:"Hola. Vi tus contenidos sobre bienestar y me llamó la atención. Llevo meses queriendo hacer algo con mi salud, pero no sé si este es el momento. ¿Me podés contar cómo funciona?",
-  finance:"Hola. Estuve mirando lo que ofrecés sobre finanzas. Tengo deudas y quiero organizarme, pero no sé si puedo invertir en un acompañamiento ahora. ¿De qué se trata?",
-  coaching:"Hola. Me pasaron tu perfil. Estoy en un momento de transición profesional y busco orientación, pero ya intenté cosas antes que no funcionaron. ¿En qué es diferente lo que hacés?",
-  vida_real:"Te soy sincero, no sé qué hacer. Hace meses vengo diciendo que voy a cambiar de rumbo porque estoy agotado, pero siempre encuentro una excusa. Hoy tuve otro mal día. ¿Vos qué harías en mi lugar?",
+  wellness:"Hola. Llevo meses queriendo hacer algo con mi salud, pero no sé si este es el momento. ¿Me podés contar cómo funciona?",
+  finance:"Hola. Tengo deudas y quiero organizarme, pero no sé si puedo invertir en un acompañamiento ahora. ¿De qué se trata?",
+  coaching:"Hola. Estoy en un momento de transición profesional y busco orientación, pero ya intenté cosas antes que no funcionaron.",
+  vida_real:"No sé qué hacer. Hace meses vengo diciendo que voy a cambiar de rumbo porque estoy agotado, pero siempre encuentro una excusa. ¿Vos qué harías?",
 };
 
 const PROFILES={
   setter:{title:"Setter",color:"var(--setter)",subtitle:"El arquitecto de la confianza.",
-    desc:"Tu forma natural de relacionarte es tu activo más poderoso. Generás ambientes donde las personas se abren y confían — sin pedirlo. Sabés indagar sin interrogar.",
+    desc:"Tu forma natural de relacionarte genera ambientes donde las personas confían rápido. Sabés indagar sin interrogar.",
     traits:[
       {icon:"🤝",t:"Construís rapport genuino como reflejo de quién sos."},
-      {icon:"💬",t:"Tus preguntas abren, la gente habla más de lo planeado."},
-      {icon:"🌱",t:"Zona de impacto: Primeras interacciones y calificación."},
-    ],cta:"Quiero ver cómo monetizar mi perfil natural →"},
+      {icon:"💬",t:"Tus preguntas abren el diálogo."},
+      {icon:"🌱",t:"Zona de impacto: Primeras interacciones."}
+    ]},
   closer:{title:"Closer",color:"var(--closer)",subtitle:"El catalizador de decisiones.",
-    desc:"Operás con claridad. Sabés leer el momento exacto para avanzar, manejar la fricción sin incomodarte, y transformar dudas en resoluciones. Te sentís cómodo/a con la verdad directa.",
+    desc:"Operás con claridad. Sabés manejar la fricción y transformar dudas en resoluciones. Te sentís cómodo con la verdad directa.",
     traits:[
-      {icon:"⚡",t:"Mantenés el foco cuando la presión sube."},
-      {icon:"🔍",t:"Detectás el problema real detrás de lo que dicen."},
-      {icon:"✅",t:"Zona de impacto: Conversaciones definitorias."},
-    ],cta:"Quiero ver cómo monetizar mi instinto resolutivo →"},
+      {icon:"⚡",t:"Mantenés el foco bajo presión."},
+      {icon:"🔍",t:"Detectás el problema real de fondo."},
+      {icon:"✅",t:"Zona de impacto: Conversaciones definitorias."}
+    ]},
   appointment:{title:"Prospector / Chat Setter",color:"#9b59b6",subtitle:"El estratega silencioso.",
-    desc:"Tenés una gran capacidad de análisis pero las llamadas uno a uno te quitan energía. Tu zona genial no está en la confrontación directa por teléfono, sino en crear oportunidades por escrito, gestionando DMs y filtrando prospectos de forma estratégica.",
+    desc:"Tu zona genial está en crear oportunidades por escrito. Gestionás DMs y filtrás prospectos de forma estratégica.",
     traits:[
-      {icon:"📱",t:"Manejás múltiples conversaciones escritas con fluidez."},
-      {icon:"🧩",t:"Buscás patrones y calificás sin el desgaste de una llamada."},
-      {icon:"🎯",t:"Zona de impacto: Generación de leads y pre-cualificación."},
-    ],cta:"Quiero ver cómo monetizar gestionando chats →"}
+      {icon:"📱",t:"Manejás múltiples chats con fluidez."},
+      {icon:"🧩",t:"Buscás patrones sin el desgaste de una llamada."},
+      {icon:"🎯",t:"Zona de impacto: Generación de leads."}
+    ]}
 };
 
 // ======================================================================
-// MOTOR NLP LOCAL (Cero Tokens, 100% Privado)
+// 3. MOTOR NLP LOCAL (Cero Tokens, 100% Privado)
 // ======================================================================
-
 const localNLP = {
   analyzeText: (text) => {
     const txt = text.toLowerCase();
-    const setterKeywords = ['escuchar', 'entender', 'ayudar', 'proceso', 'sentir', 'confianza', 'preguntar', 'por qué', 'cómo', 'acompañar', 'empatía'];
-    const closerKeywords = ['lograr', 'decisión', 'resultado', 'impacto', 'directo', 'ahora', 'objetivo', 'resolver', 'hacer', 'acción', 'concreto'];
-    
-    let setterScore = 1, closerScore = 1;
-    setterKeywords.forEach(w => { if(txt.includes(w)) setterScore += 1.5; });
-    closerKeywords.forEach(w => { if(txt.includes(w)) closerScore += 1.5; });
-    
+    const setterKeywords = ['escuchar', 'entender', 'ayudar', 'proceso', 'sentir', 'confianza', 'preguntar', 'empatía', 'acompañar', 'por qué', 'cómo'];
+    const closerKeywords = ['lograr', 'decisión', 'resultado', 'impacto', 'directo', 'ahora', 'objetivo', 'resolver', 'acción', 'hacer', 'concreto'];
+    let s = 1, c = 1;
+    setterKeywords.forEach(w => { if(txt.includes(w)) s += 1.5; });
+    closerKeywords.forEach(w => { if(txt.includes(w)) c += 1.5; });
     const questionCount = (txt.match(/\?/g) || []).length;
-    if (questionCount > 0) setterScore += questionCount;
-    
-    const sentences = txt.split('.').filter(s => s.trim().length > 0);
-    const avgLength = sentences.length > 0 ? (txt.length / sentences.length) : txt.length;
-    if (avgLength < 40 && sentences.length > 1) closerScore += 1.5; 
-
-    return { 
-      s: Math.min(5, Math.round(setterScore)), 
-      c: Math.min(5, Math.round(closerScore)) 
-    };
+    if (questionCount > 0) s += questionCount;
+    return { s: Math.min(5, Math.round(s)), c: Math.min(5, Math.round(c)) };
   },
-
   getDynamicReply: (niche, userMsg, turnIndex) => {
-    const isQuestion = userMsg.includes('?');
     const pools = {
-      vida_real: [
-        isQuestion ? "Esa es una buena pregunta. Creo que mi mayor miedo es fracasar y perder lo poco que tengo." : "Entiendo, pero del dicho al hecho hay un trecho. Me paraliza la incertidumbre.",
-        "Quizás tenés razón... Pero me falta un plan concreto. ¿Cómo doy el primer paso?",
-        "Gracias por escucharme. Me dejás pensando bastante. Voy a tratar de aplicar esto que me decís."
-      ],
-      default: [
-        isQuestion ? "Esa es mi duda principal. No sé cómo aplicaría esto a mi situación." : "Tiene sentido, pero el presupuesto me frena un poco.",
-        "Entiendo el valor, pero ¿qué pasa si no veo resultados rápido?",
-        "Okay, me queda claro. Lo voy a revisar y evaluar los números."
-      ]
+      vida_real: ["Creo que mi mayor miedo es fracasar y perder lo poco que tengo.", "¿Cómo doy el primer paso sin equivocarme?", "Me dejás pensando bastante. Gracias."],
+      default: ["No sé cómo aplicaría esto a mi situación.", "¿Qué pasa si no veo resultados rápido?", "Lo voy a revisar y evaluar los números."]
     };
     const pool = pools[niche] || pools.default;
     return pool[turnIndex] || pool[pool.length - 1];
@@ -444,7 +442,6 @@ async function scoreOpen(qt, ans, dim) {
 
 async function getAlexReply(opener, exch, msg, isLast, niche) {
   await new Promise(r => setTimeout(r, 1000)); 
-  if (isLast) return localNLP.getDynamicReply(niche, msg, 2);
   return localNLP.getDynamicReply(niche, msg, exch.length);
 }
 
@@ -456,19 +453,19 @@ async function scoreRoleplay(userMsgs, niche) {
 }
 
 // ======================================================================
-// MOTOR LÓGICO DE CONGRUENCIA
+// 4. LÓGICA DE CÓMPUTO Y CONGRUENCIA
 // ======================================================================
-
 function getTopicInsight(ids){
   const ts=ids.map(id=>TOPICS.find(t=>t.id===id));
   const s=ts.filter(t=>t?.w?.s>t?.w?.c).length;
   const c=ts.filter(t=>t?.w?.c>t?.w?.s).length;
-  if(s>=2)return"Esta elección revela una orientación natural hacia la conexión. Generás confianza antes de ir a una propuesta.";
-  if(c>=2)return"Esta elección revela orientación a resultados. Te sentís cómodo/a dirigiendo conversaciones hacia el siguiente paso.";
-  return"Combinaste temas de relación y resultado. Esto sugiere un perfil muy flexible.";
+  if(s>=2)return"Esta elección revela una orientación natural hacia la conexión. Generás confianza naturalmente antes de proponer algo.";
+  if(c>=2)return"Esta elección revela orientación a resultados. Te sentís cómodo/a dirigiendo la interacción hacia una decisión.";
+  return"Combinaste temas de relación y resultado. Esto sugiere un perfil muy flexible y adaptable.";
 }
 
-function getZoneLabel(s){
+function getZoneLabel(s, isApp){
+  if(isApp) return "Texting y Generación Estratégica";
   if(s>=73)return"Setter definido";if(s>=57)return"Setter con instinto resolutivo";
   if(s>=43)return"Perfil transversal híbrido";if(s>=27)return"Closer con rasgos consultivos";return"Closer definido";
 }
@@ -491,37 +488,22 @@ function compute(answers,selTopics,chatScores,niche,rpInsight){
     tS+=t.w.s; tC+=t.w.c; dm["values"].s+=t.w.s; dm["values"].c+=t.w.c; dm["values"].mx+=2;
   });
 
-  // Teoría (Auto-reporte) vs Práctica (Roleplay)
-  const theoreticalTotal = tS + tC || 1;
-  const theorySpct = Math.round((tS / theoreticalTotal) * 100);
-  
-  let finalSpct = theorySpct;
+  const theorySpct = Math.round((tS / (tS + tC || 1)) * 100);
   let congruenceWarning = null;
 
   if(chatScores){
-    const chatTot = chatScores.s + chatScores.c || 1;
-    const practSpct = Math.round((chatScores.s / chatTot) * 100);
-    
-    // Cálculo de Congruencia
+    const practSpct = Math.round((chatScores.s / (chatScores.s + chatScores.c || 1)) * 100);
     if (Math.abs(theorySpct - practSpct) > 30) {
       const realProfile = practSpct > 50 ? "Setter" : "Closer";
-      const fakeProfile = theorySpct > 50 ? "Setter" : "Closer";
-      congruenceWarning = `Tu test múltiple-choice indica un perfil ${fakeProfile}, pero en la simulación real actuaste como un ${realProfile}. Es común "forzar" un estilo por presión externa, pero tu talento natural y sin esfuerzo radica en las habilidades de ${realProfile}.`;
+      congruenceWarning = `Tu test múltiple-choice indica una tendencia distinta, pero en la simulación bajo presión actuaste con instintos de ${realProfile}. A veces "forzamos" un estilo por presión externa, pero tu talento natural fluye mejor en la dinámica de ${realProfile}.`;
     }
-
-    tS+=chatScores.s*2; tC+=chatScores.c*2; // Damos más peso a la práctica final
-    dm["ei"].s+=chatScores.s; dm["comm"].s+=chatScores.s;
-    dm["ei"].c+=chatScores.c; dm["comm"].c+=chatScores.c;
-    dm["ei"].mx+=chatScores.s+chatScores.c; dm["comm"].mx+=chatScores.s+chatScores.c;
+    tS+=chatScores.s*2; tC+=chatScores.c*2;
   }
 
   const tot=tS+tC||1; 
-  finalSpct=Math.round((tS/tot)*100); 
-  const cPct=100-finalSpct;
-  
-  // Detección de Evasión/Appointment Setter
+  let finalSpct=Math.round((tS/tot)*100); 
   let profile = finalSpct >= 50 ? "setter" : "closer";
-  if (tE >= 6) profile = "appointment"; // Si evadió mucho, recomendamos rol de chat.
+  if (tE >= 4) profile = "appointment"; // Filtro de Evasión
 
   const dims=DIMS.map(d=>{
     const v=dm[d.id];const mx=v.mx||1;
@@ -531,39 +513,36 @@ function compute(answers,selTopics,chatScores,niche,rpInsight){
   
   const weakDim=[...dims].sort((a,b)=>{
     const pA=a.tendency==="setter"?a.sp:a.cp;
-    const pB=b.tendency==="setter"?b.sp:b.cp;
-    return pA-pB;
+    return pA-Math.max(a.sp, a.cp);
   })[0];
   
   const motivType=motivScore>=4?"intrinsic":motivScore>=2?"mixed":"extrinsic";
-  return{profile, sPct:finalSpct, cPct, dims, niche, rpInsight, congruenceWarning, topics:selTopics.map(id=>TOPICS.find(t=>t.id===id)?.label), consScore, motivScore, motivType, weakDim, evasionCount: tE};
+  return{profile, sPct:finalSpct, cPct:100-finalSpct, dims, niche, rpInsight, congruenceWarning, topics:selTopics.map(id=>TOPICS.find(t=>t.id===id)?.label), consScore, motivScore, motivType, weakDim};
 }
 
-// --- REPORTES SIMULADOS RÁPIDOS ---
 async function genMatices(res) {
   await new Promise(r => setTimeout(r, 600));
   const profName = PROFILES[res.profile].title;
   const altNiche = res.niche === 'vida_real' ? 'Coaching & Desarrollo' : 'Vida Cotidiana / Consultoría';
-  return `Tu perfil de ${profName} destaca por una mezcla natural de ${res.dims[0].tendency} y ${res.dims[1].tendency}. Aunque elegiste un escenario específico, tu capacidad sugiere que también brillarías en "${altNiche}".`;
+  return `Tu perfil de ${profName} destaca por una mezcla natural de ${res.dims[0].tendency} y ${res.dims[1].tendency}. Aunque elegiste un escenario específico, tu capacidad sugiere que también brillarías en el nicho de "${altNiche}".`;
 }
 
 async function genFlow(res) {
   await new Promise(r => setTimeout(r, 500));
-  if(res.profile === 'appointment') return ["Gestionando y organizando flujos de leads.", "Filtrando perfiles mediante preguntas por chat.", "Operando sin la presión de la llamada en vivo."];
+  if(res.profile === 'appointment') return ["Gestionando flujos de leads masivos.", "Filtrando perfiles estratégicamente.", "Operando sin la presión de la llamada."];
   return res.profile === 'setter' 
-    ? ["Iniciando conversaciones desde la curiosidad.", "Ayudando a otros a descubrir sus bloqueos.", "Creando confianza sin la presión de un objetivo rápido."]
-    : ["Resolviendo problemas bajo presión de tiempo.", "Llevando charlas ambiguas a conclusiones.", "Manejando fricción directa."];
+    ? ["Iniciando conversaciones desde la curiosidad.", "Ayudando a otros a descubrir sus bloqueos.", "Creando confianza sin presión de venta rápida."]
+    : ["Resolviendo problemas bajo presión de tiempo.", "Llevando charlas ambiguas a conclusiones firmes.", "Manejando fricción directa con empatía."];
 }
 
 async function genDevPath(res, weakDim) {
   await new Promise(r => setTimeout(r, 400));
-  return `En los próximos 30 días, enfocate en tu ${weakDim?.label || 'organización'}. Intentá aplicar un enfoque más analítico al menos una vez al día en tus charlas.`;
+  return `En los próximos 30 días, enfocate en fortalecer tu dimensión de ${weakDim?.label || 'organización'}. Intentá aplicar un enfoque más analítico al menos una vez al día en tus charlas cotidianas.`;
 }
 
 // ======================================================================
-// COMPONENTE PRINCIPAL (UI / React)
+// 5. COMPONENTE PRINCIPAL (REACT UI)
 // ======================================================================
-
 export default function App(){
   const[stage,setStage]=useState("intro");
   const[qIdx,setQIdx]=useState(0);
@@ -605,8 +584,7 @@ export default function App(){
   const asel=fbActive?fbSel:selOpt;const setAsel=fbActive?setFbSel:setSelOpt;
   const dimLbl=q?.type==="hidden-cons"?"Consistencia":q?.type==="hidden-motiv"?"Motivación":DIMS.find(d=>d.id===q?.dim)?.label||"";
   const dimCol=isOp?"var(--open)":q?.type==="hidden-cons"?"var(--cons)":q?.type==="hidden-motiv"?"var(--motiv)":"var(--gold)";
-  const progGrad=isOp?"linear-gradient(90deg,rgba(143,200,138,.45),var(--open))":q?.type==="hidden-cons"?"linear-gradient(90deg,rgba(180,138,220,.45),var(--cons))":q?.type==="hidden-motiv"?"linear-gradient(90deg,rgba(240,192,96,.45),var(--motiv))":"linear-gradient(90deg,rgba(200,170,110,.45),var(--gold))";
-  
+
   const rst=()=>{setSelOpt(null);setFbActive(false);setFbSel(null);setOpenText("");setAiWork(false);setAiDone(false);};
   const adv=()=>{rst();if(qIdx===PART1_END-1){setPStep("topics");setStage("pause");}else if(qIdx===totalQ-1){setStage("capture");}else setQIdx(i=>i+1);};
   const back=()=>{if(fbActive){setFbActive(false);setFbSel(null);return;}rst();if(qIdx===0)setStage("intro");else setQIdx(i=>i-1);};
@@ -617,58 +595,68 @@ export default function App(){
     else{const w=opts[idx].w;setAnswers(p=>({...p,[q.id]:{s:w.s,c:w.c,e:w.e||0}}));}
     adv();
   };
-  
   const submitOpen=async()=>{setAiWork(true);const sc=await scoreOpen(q.text,openText,q.dim);setAnswers(p=>({...p,[q.id]:sc}));setAiWork(false);setAiDone(true);setTimeout(adv,1000);};
-  const PSTEPS=["topics","insight","niche","roleplay-intro","chat","chat-insight"];
-  const pBack=()=>{const i=PSTEPS.indexOf(pStep);if(i<=0){setQIdx(PART1_END-1);rst();setStage("quiz");}else{if(pStep==="chat"&&turns>0)return;setPStep(PSTEPS[i-1]);}};
+  const pBack=()=>{const i=["topics","insight","niche","roleplay-intro","chat","chat-insight"].indexOf(pStep);if(i<=0){setQIdx(PART1_END-1);rst();setStage("quiz");}else{if(pStep==="chat"&&turns>0)return;setPStep(["topics","insight","niche","roleplay-intro","chat","chat-insight"][i-1]);}};
   const togTopic=id=>setSelTopics(p=>p.includes(id)?p.filter(x=>x!==id):p.length<2?[...p,id]:p);
   const startRP=()=>{const opener=ALEX[niche]||ALEX.vida_real;setChatMsgs([{role:"alex",text:opener}]);setExch([]);setTurns(0);setChatIn("");setPStep("chat");};
   
   const send=async()=>{
     const msg=chatIn.trim();if(!msg||chatLoad)return;setChatIn("");const isLast=turns===2;
     setChatMsgs(p=>[...p,{role:"user",text:msg}]);setChatLoad(true);
-    const opener=ALEX[niche]||ALEX.vida_real;const ar=await getAlexReply(opener,exch,msg,isLast,niche);
-    setChatMsgs(p=>[...p,{role:"alex",text:ar}]);const ne=[...exch,{u:msg,a:ar}];setExch(ne);setTurns(t=>t+1);
-    if(isLast){const um=[...exch.map(e=>e.u),msg];const sc=await scoreRoleplay(um,niche);setChatSc({s:sc.s||2,c:sc.c||2,er:sc.er||1});setRpIns(sc.insight||"");setChatLoad(false);setPStep("chat-insight");}else setChatLoad(false);
+    const ar=await getAlexReply(ALEX[niche],exch,msg,isLast,niche);
+    setChatMsgs(p=>[...p,{role:"alex",text:ar}]);setExch(p=>[...p,{u:msg,a:ar}]);setTurns(t=>t+1);
+    if(isLast){const sc=await scoreRoleplay(exch.map(e=>e.u).concat(msg),niche);setChatSc(sc);setRpIns(sc.insight);setChatLoad(false);setPStep("chat-insight");}else setChatLoad(false);
   };
   
   const capture=async()=>{
     setSending(true);
+    
+    // Preparando datos para Zapier/Make
+    const payload = {
+      name: lead.name, email: lead.email,
+      answers: answers, topics: selTopics, niche: niche
+    };
+
+    try{
+      await fetch("https://hooks.zapier.com/hooks/catch/TU_ID_AQUI/", {
+        method: "POST", body: JSON.stringify(payload)
+      });
+    } catch(e) { /* Si no hay webhook configurado, continúa normal */ }
+    
     setSending(false);setStage("loading");
     setTimeout(async()=>{
       const r=compute(answers,selTopics,chatSc,niche,rpIns);setResult(r);setStage("result");
-      setAiL({m:true,f:true,d:true});
-      const[mat,flow,dev]=await Promise.all([genMatices(r),genFlow(r),genDevPath(r,r.weakDim)]);
-      setMatices(mat);setFlowC(flow);setDevP(dev);setAiL({m:false,f:false,d:false});
+      const[m,f,d]=await Promise.all([genMatices(r),genFlow(r),genDevPath(r,r.weakDim)]);
+      setMatices(m);setFlowC(f);setDevP(d);setAiL({m:false,f:false,d:false});
     },600);
   };
-  
-  const reset=()=>{setStage("intro");setQIdx(0);setAnswers({});rst();setSelTopics([]);setTopicIns("");setNiche(null);setChatMsgs([]);setChatIn("");setTurns(0);setExch([]);setChatSc({s:0,c:0,er:0});setRpIns("");setLead({name:"",email:""});setResult(null);setMatices("");setFlowC([]);setDevP("");setSending(false);setPStep("topics");setAiL({m:true,f:true,d:true});};
 
   return(
     <div className="shell"><style>{G}</style>
     <AnimatePresence mode="wait">
 
+      {/* STAGE: INTRO */}
       {stage==="intro"&&(
-        <motion.div key="intro" initial={{opacity:0,y:18}} animate={{opacity:1,y:0,transition:{duration:.62}}} exit={{opacity:0,y:-14,transition:{duration:.26}}}>
+        <motion.div key="intro" initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} exit={{opacity:0,y:-14}}>
           <div className="intro-bar"><div className="bar-s"/><div className="bar-dot"/><div className="bar-c"/></div>
-          <span className="ey">Test de Potencial Natural</span>
-          <h1>Descubrí cómo monetizar<br/>tu forma de<br/>relacionarte.</h1>
-          <p className="lead">Tus años interactuando con personas y resolviendo problemas son la materia prima exacta del Alto Ticket. No se requiere experiencia previa en ventas.</p>
-          <div className="pill-row">{["Evaluación adaptativa","Roleplay en vivo","Motor de Congruencia","Sin experiencia requerida"].map(t=><span key={t} className="pill">{t}</span>)}</div>
+          <span className="ey">Diagnóstico Natural</span>
+          <h1>Monetizá tu forma de<br/>relacionarte.</h1>
+          <p className="lead">Tus años resolviendo problemas y empatizando con personas son la materia prima exacta del Alto Ticket. No se requiere experiencia previa en ventas.</p>
+          <div className="pill-row">{["Evaluación adaptativa","Roleplay en vivo","Motor de Congruencia","Test de 15 min"].map(t=><span key={t} className="pill">{t}</span>)}</div>
           <button className="btn-gold" onClick={()=>setStage("quiz")}>Empezar diagnóstico →</button>
         </motion.div>
       )}
 
+      {/* STAGE: QUIZ */}
       {stage==="quiz"&&q&&(
-        <motion.div key={`q-${qIdx}-${fbActive}`} initial={{opacity:0,x:26}} animate={{opacity:1,x:0,transition:{duration:.33}}} exit={{opacity:0,x:-20,transition:{duration:.2}}}>
+        <motion.div key={`q-${qIdx}-${fbActive}`} initial={{opacity:0,x:26}} animate={{opacity:1,x:0}} exit={{opacity:0,x:-20}}>
           {qIdx===PART1_END&&<div className="pause-banner"><span style={{fontSize:"1.4rem",flexShrink:0}}>💬</span><p className="pb-text"><strong>Segunda parte.</strong> Ya completaste la pausa interactiva. Continuamos con las dimensiones restantes.</p></div>}
           {!isHid&&<div className="ddots">{DIMS.map((d,i)=><div key={d.id} className={`ddot ${i<dimIdx?"done":i===dimIdx?"active":""}`}/>)}</div>}
           <div className="prog">
-            <div className="prog-top"><span className="prog-dim" style={{color:dimCol}}>{dimLbl}{isOp?" · respuesta libre":""}</span><span className="prog-count">{qIdx+1}/{totalQ}</span></div>
-            <div className="prog-track"><div className="prog-fill" style={{width:`${prog}%`,background:progGrad}}/></div>
+            <div className="prog-top"><span className="prog-dim" style={{color:dimCol}}>{dimLbl}{isOp?" · libre":""}</span><span className="prog-count">{qIdx+1}/{totalQ}</span></div>
+            <div className="prog-track"><div className="prog-fill" style={{width:`${prog}%`,background:'var(--gold)'}}/></div>
           </div>
-          {isOp&&(<>
+          {isOp?(<>
             <h2>{q.text}</h2>
             <div className="open-card"><span className="open-ey">Análisis en tiempo real</span>
               <AnimatePresence mode="wait">
@@ -678,8 +666,7 @@ export default function App(){
               </AnimatePresence>
             </div>
             {!aiWork&&!aiDone&&<><button className="btn-gold" disabled={openText.trim().length<5} onClick={submitOpen}>Procesar respuesta →</button><button className="btn-ghost" onClick={back}>← Volver</button></>}
-          </>)}
-          {!isOp&&(<>
+          </>):(<>
             <AnimatePresence mode="wait">
               {fbActive?<motion.div key="fb" initial={{opacity:0,y:-7}} animate={{opacity:1,y:0}}><div className="fb-box"><span className="fb-lbl">Versión alternativa</span><h2 style={{marginBottom:0,fontSize:"clamp(1.1rem,3vw,1.48rem)"}}>{q.fb?.text}</h2></div></motion.div>
                 :<motion.h2 key="mq" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0,transition:{duration:.14}}}>{q.text}</motion.h2>}
@@ -692,10 +679,11 @@ export default function App(){
         </motion.div>
       )}
 
+      {/* STAGE: PAUSE & ROLEPLAY */}
       {stage==="pause"&&(
-        <motion.div key={`p-${pStep}`} initial={{opacity:0,x:pStep==="topics"?0:18}} animate={{opacity:1,x:0,transition:{duration:.36}}} exit={{opacity:0,transition:{duration:.2}}}>
+        <motion.div key={`p-${pStep}`} initial={{opacity:0,x:pStep==="topics"?0:18}} animate={{opacity:1,x:0}} exit={{opacity:0}}>
           {pStep==="topics"&&<>
-            <span className="ey" style={{color:"rgba(200,170,110,.65)"}}>⏸ Pausa interactiva · Mitad del test</span>
+            <span className="ey" style={{color:"rgba(200,170,110,.65)"}}>⏸ Pausa interactiva</span>
             <h2>¿Sobre qué temas te sentís más natural hablando?</h2><p>Elegí exactamente 2.</p>
             <div className="topic-grid">{TOPICS.map(t=><button key={t.id} className={`tbtn ${selTopics.includes(t.id)?"sel":""}`} onClick={()=>togTopic(t.id)}><span className="t-ico">{t.icon}</span><span style={{flex:1}}>{t.label}</span><span className="t-chk">{selTopics.includes(t.id)?"✓":""}</span></button>)}</div>
             <button className="btn-gold" disabled={selTopics.length!==2} onClick={()=>{setTopicIns(getTopicInsight(selTopics));setPStep("insight");}}>Continuar →</button>
@@ -748,8 +736,9 @@ export default function App(){
         </motion.div>
       )}
 
+      {/* STAGE: CAPTURE LEADS */}
       {stage==="capture"&&(
-        <motion.div key="capture" initial={{opacity:0,y:18}} animate={{opacity:1,y:0,transition:{duration:.42}}} exit={{opacity:0,y:-14,transition:{duration:.24}}}>
+        <motion.div key="capture" initial={{opacity:0,y:18}} animate={{opacity:1,y:0}}>
           <span className="ey">Análisis completado</span><h2>¿A dónde te mando el reporte final?</h2>
           <div style={{margin:"2rem 0"}}>
             <div className="field"><label>Nombre</label><input type="text" placeholder="Tu nombre" value={lead.name} onChange={e=>setLead(p=>({...p,name:e.target.value}))}/></div>
@@ -759,6 +748,7 @@ export default function App(){
         </motion.div>
       )}
 
+      {/* STAGE: LOADING */}
       {stage==="loading"&&(
         <motion.div key="loading" initial={{opacity:0}} animate={{opacity:1}}>
           <div className="loader-c">
@@ -769,16 +759,17 @@ export default function App(){
         </motion.div>
       )}
 
+      {/* STAGE: RESULT */}
       {stage==="result"&&result&&(()=>{
         const prof=PROFILES[result.profile];
         const isApp = result.profile === 'appointment';
-        const zone= isApp ? "Texting y Generación" : getZoneLabel(result.sPct);
+        const zone= getZoneLabel(result.sPct, isApp);
         const consPct=Math.round((result.consScore/6)*100);
         const mLbl=result.motivType==="intrinsic"?"Motivación intrínseca":result.motivType==="mixed"?"Motivación mixta":"Motivación extrínseca";
         const mDesc=result.motivType==="intrinsic"?"Impulsado/a por impacto y sentido genuino.":result.motivType==="mixed"?"Combinás autonomía con incentivo concreto.":"El resultado es tu principal motor.";
         
         return(
-          <motion.div key="result" initial={{opacity:0,y:20}} animate={{opacity:1,y:0,transition:{duration:.58}}}>
+          <motion.div key="result" initial={{opacity:0,y:20}} animate={{opacity:1,y:0}}>
             <span className="profile-badge">Perfil identificado</span>
             <div className="zone-wrap"><div className="zone-lbl">Tu zona genial</div><div className="zone-nm">{zone}</div></div>
             <h1 style={{color:prof.color,marginBottom:".35rem"}}>{prof.title}</h1>
@@ -858,7 +849,29 @@ export default function App(){
             </div>
 
             <div className="divider"/>
-            <button className="btn-gold" style={{width:"100%",justifyContent:"center"}} onClick={()=>window.open("https://calendly.com/TU-LINK","_blank")}>{prof.cta}</button>
+            
+            <div className="sci-section">
+              <div className="sci-header">
+                <div className="sci-ico" style={{background:"rgba(200,170,110,.1)",border:"1px solid rgba(200,170,110,.25)"}}>📚</div>
+                <div className="sci-meta">
+                  <div className="sci-lbl">Diccionario de Perfiles</div>
+                  <div className="sci-name">Entendiendo tu resultado</div>
+                </div>
+              </div>
+              <div className="flow-cards">
+                {Object.values(ROLE_DICTIONARY).map((role, i) => (
+                  <div key={i} style={{marginBottom:'1rem'}}>
+                    <strong style={{color:'var(--gold)', display:'block', marginBottom:'4px'}}>{role.title}</strong>
+                    <p style={{fontSize:'.9rem', lineHeight:'1.5'}}>{role.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="disclaimer" style={{marginTop:'2rem'}}>
+              Hemos enviado un desglose detallado y con diseño premium a tu casilla de correo: <strong>{lead.email}</strong>. Revisá tu carpeta de Promociones o Spam si no lo ves en unos minutos.
+            </div>
+
             <button className="btn-ghost" style={{textAlign:"center",width:"100%",marginTop:"1.2rem"}} onClick={reset}>Reiniciar diagnóstico</button>
           </motion.div>
         );
