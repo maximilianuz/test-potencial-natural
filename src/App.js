@@ -612,28 +612,36 @@ export default function App(){
     setSending(true);
     
     // Preparando datos para Zapier/Make
+    const capture = async () => {
+    setSending(true);
+    
+    // Estos son los datos que viajarán a Make
     const payload = {
-      name: lead.name, email: lead.email,
-      answers: answers, topics: selTopics, niche: niche
+      name: lead.name,
+      email: lead.email,
+      profile: PROFILES[result.profile].title, // Envía "Setter" o "Closer" en vez de el ID
+      sPct: result.sPct,
+      cPct: result.cPct,
+      congruence: result.congruenceWarning || "Perfil Congruente",
+      weakDim: result.weakDim?.label || "General",
+      matices: matices
     };
 
-    try{
-      await fetch("https://hooks.zapier.com/hooks/catch/https://hook.eu1.make.com/o3lp3x7zcqyjk2ebpda531naz2176ys2/", {
-        method: "POST", body: JSON.stringify(payload)
+    try {
+      // AQUÍ PEGA TU URL DE MAKE (La que empieza con https://hook.us1.make.com/...)
+      await fetch("https://hook.eu1.make.com/o3lp3x7zcqyjk2ebpda531naz2176ys2", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
       });
-    } catch(e) { /* Si no hay webhook configurado, continúa normal */ }
+      console.log("Datos enviados a Make correctamente");
+    } catch (e) {
+      console.error("Error al enviar a Make:", e);
+    }
     
-    setSending(false);setStage("loading");
-    setTimeout(async()=>{
-      const r=compute(answers,selTopics,chatSc,niche,rpIns);setResult(r);setStage("result");
-      const[m,f,d]=await Promise.all([genMatices(r),genFlow(r),genDevPath(r,r.weakDim)]);
-      setMatices(m);setFlowC(f);setDevP(d);setAiL({m:false,f:false,d:false});
-    },600);
-  };
-
-  return(
-    <div className="shell"><style>{G}</style>
-    <AnimatePresence mode="wait">
+    setSending(false);
+    setStage("loading");
+    // ... sigue el resto del código igual
 
       {/* STAGE: INTRO */}
       {stage==="intro"&&(
